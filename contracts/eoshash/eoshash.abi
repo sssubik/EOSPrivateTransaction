@@ -1,0 +1,61 @@
+{
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT ",
+    "version": "eosio::abi/1.1",
+    "types": [],
+    "structs": [
+        {
+            "name": "dochash",
+            "base": "",
+            "fields": [
+                {
+                    "name": "docHash",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "dociscchash",
+            "base": "",
+            "fields": [
+                {
+                    "name": "docISCCHash",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "uploadhash",
+            "base": "",
+            "fields": [
+                {
+                    "name": "docHash",
+                    "type": "string"
+                },
+                {
+                    "name": "docISCCHash",
+                    "type": "string"
+                }
+            ]
+        }
+    ],
+    "actions": [
+        {
+            "name": "dochash",
+            "type": "dochash",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "dociscchash",
+            "type": "dociscchash",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "uploadhash",
+            "type": "uploadhash",
+            "ricardian_contract": ""
+        }
+    ],
+    "tables": [],
+    "ricardian_clauses": [],
+    "variants": []
+}
