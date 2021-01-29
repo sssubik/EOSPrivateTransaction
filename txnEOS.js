@@ -16,7 +16,7 @@ const send = require('./models/send')
     verbose: false, // API activity
     sign: true
   }  */
-const defaultPrivateKey = process.env.PRIVATE_KEY_MAIN; // bob
+const defaultPrivateKey = process.env.PRIVATE_KEY_TEST; // bob
 const signatureProvider = new JsSignatureProvider([defaultPrivateKey]);
 
 
