@@ -10,7 +10,7 @@ class [[eosio::contract]] eoshash : public contract {
       void timestamp(std::string hash, std::string security4dhash) {}
 
     [[eosio::action]]
-      void timestamp(std::string hash) {}
+      void timestamphash(std::string hash) {}
     
      [[eosio::action]]
       void timestamp4d(std::string security4dhash) {}

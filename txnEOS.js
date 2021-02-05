@@ -20,7 +20,7 @@ const defaultPrivateKey = process.env.PRIVATE_KEY_TEST; // bob
 const signatureProvider = new JsSignatureProvider([defaultPrivateKey]);
 
 
-const rpc = new JsonRpc('https://jungle3.cryptolions.io:443', { fetch });
+const rpc = new JsonRpc('http://jungle3.cryptolions.io:80', { fetch });
 const api = new Api({ rpc, signatureProvider, textDecoder: new TextDecoder(), textEncoder: new TextEncoder() });
 
 sendDocAndISCCHash = async (transactions) => {

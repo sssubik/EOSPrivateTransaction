@@ -26,6 +26,16 @@
                     "type": "string"
                 }
             ]
+        },
+        {
+            "name": "timestamphash",
+            "base": "",
+            "fields": [
+                {
+                    "name": "hash",
+                    "type": "string"
+                }
+            ]
         }
     ],
     "actions": [
@@ -37,6 +47,11 @@
         {
             "name": "timestamp4d",
             "type": "timestamp4d",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "timestamphash",
+            "type": "timestamphash",
             "ricardian_contract": ""
         }
     ],
