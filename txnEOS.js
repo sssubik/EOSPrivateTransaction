@@ -31,15 +31,15 @@ sendDocAndISCCHash = async (transactions) => {
              result = await api.transact({
                 actions: [{
                     account: 'ipbeehashacc',
-                    name: 'uploadhash',
+                    name: 'timestamp',
                     authorization: [{
                         actor: 'ipbeehashacc',
                         permission: 'active',
                     }],
                     data: {
                         from: 'ipbeehashacc',
-                        docHash: transaction.docHash,
-                        docISCCHash: transaction.docISCCHash
+                        hash: transaction.docHash,
+                        security4dhash: transaction.docISCCHash
                     }
                 }]
             },
