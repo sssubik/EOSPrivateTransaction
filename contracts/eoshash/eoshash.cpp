@@ -7,13 +7,13 @@ class [[eosio::contract]] eoshash : public contract {
       using contract::contract;
 
     [[eosio::action]]
-      void uploadhash(std::string docHash, std::string docISCCHash) {}
+      void timestamp(std::string hash, std::string security4dhash) {}
 
     [[eosio::action]]
-      void dochash(std::string docHash) {}
+      void timestamp(std::string hash) {}
     
      [[eosio::action]]
-      void dociscchash(std::string docISCCHash) {}
+      void timestamp4d(std::string security4dhash) {}
 
 
   
