@@ -16,11 +16,11 @@ const send = require('./models/send')
     verbose: false, // API activity
     sign: true
   }  */
-const defaultPrivateKey = process.env.PRIVATE_KEY_TEST; // bob
+const defaultPrivateKey = process.env.PRIVATE_KEY_TEST_EOSIO; // bob
 const signatureProvider = new JsSignatureProvider([defaultPrivateKey]);
+const rpc = new JsonRpc('https://api.testnet.eos.io', { fetch });
 
-
-const rpc = new JsonRpc('http://jungle3.cryptolions.io:80', { fetch });
+//const rpc = new JsonRpc('http://jungle3.cryptolions.io:80', { fetch });
 const api = new Api({ rpc, signatureProvider, textDecoder: new TextDecoder(), textEncoder: new TextEncoder() });
 
 sendDocAndISCCHash = async (transactions) => {
@@ -30,14 +30,14 @@ sendDocAndISCCHash = async (transactions) => {
         try {
              result = await api.transact({
                 actions: [{
-                    account: 'ipbeehashacc',
+                    account: 'wemkmoegoqei',
                     name: 'timestamp',
                     authorization: [{
-                        actor: 'ipbeehashacc',
+                        actor: 'wemkmoegoqei',
                         permission: 'active',
                     }],
                     data: {
-                        from: 'ipbeehashacc',
+                        from: 'wemkmoegoqei',
                         hash: transaction.docHash,
                         security4dhash: transaction.docISCCHash
                     }
