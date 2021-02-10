@@ -12,7 +12,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "security4dhash",
+                    "name": "hash4d",
                     "type": "string"
                 }
             ]
@@ -22,7 +22,7 @@
             "base": "",
             "fields": [
                 {
-                    "name": "security4dhash",
+                    "name": "hash4d",
                     "type": "string"
                 }
             ]

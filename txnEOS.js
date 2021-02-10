@@ -39,7 +39,7 @@ sendDocAndISCCHash = async (transactions) => {
                     data: {
                         from: 'wemkmoegoqei',
                         hash: transaction.docHash,
-                        security4dhash: transaction.docISCCHash
+                        hash4d: transaction.docISCCHash
                     }
                 }]
             },
@@ -48,11 +48,6 @@ sendDocAndISCCHash = async (transactions) => {
                     expireSeconds: 30,
                 }
             )
-        }
-        catch (error) {
-            console.log(error)
-            result = error
-        }
         console.log(result)
         await saveTransaction({
             "result": result,
@@ -60,6 +55,12 @@ sendDocAndISCCHash = async (transactions) => {
             "docISCCHash": transaction.docISCCHash,
             "docHash": transaction.docHash
         })
+        }
+        catch (error) {
+            console.log(error)
+            result = error
+        }
+        
     }
     
 }
