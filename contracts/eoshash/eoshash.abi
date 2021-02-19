@@ -4,35 +4,35 @@
     "types": [],
     "structs": [
         {
-            "name": "dochash",
+            "name": "timestamp",
             "base": "",
             "fields": [
                 {
-                    "name": "docHash",
-                    "type": "string"
-                }
-            ]
-        },
-        {
-            "name": "dociscchash",
-            "base": "",
-            "fields": [
-                {
-                    "name": "docISCCHash",
-                    "type": "string"
-                }
-            ]
-        },
-        {
-            "name": "uploadhash",
-            "base": "",
-            "fields": [
-                {
-                    "name": "docHash",
+                    "name": "hash",
                     "type": "string"
                 },
                 {
-                    "name": "docISCCHash",
+                    "name": "security4dhash",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "timestamp4d",
+            "base": "",
+            "fields": [
+                {
+                    "name": "security4dhash",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "timestamphash",
+            "base": "",
+            "fields": [
+                {
+                    "name": "hash",
                     "type": "string"
                 }
             ]
@@ -40,18 +40,18 @@
     ],
     "actions": [
         {
-            "name": "dochash",
-            "type": "dochash",
+            "name": "timestamp",
+            "type": "timestamp",
             "ricardian_contract": ""
         },
         {
-            "name": "dociscchash",
-            "type": "dociscchash",
+            "name": "timestamp4d",
+            "type": "timestamp4d",
             "ricardian_contract": ""
         },
         {
-            "name": "uploadhash",
-            "type": "uploadhash",
+            "name": "timestamphash",
+            "type": "timestamphash",
             "ricardian_contract": ""
         }
     ],
