@@ -2,7 +2,7 @@ const Sequelize = require('sequelize')
 
 const sequelize = require('../util/databaseConnection')
 
-const Send = sequelize.define('send',{
+const Send = sequelize.define('sendEOS',{
     id:{
         type: Sequelize.INTEGER,
         primaryKey:true,
@@ -31,6 +31,6 @@ const Send = sequelize.define('send',{
 },{   
     timestamps: false,
     freezeTableName:true, 
-    tableName: "send"})
+    tableName: "sendEOS"})
 
 module.exports = Send
