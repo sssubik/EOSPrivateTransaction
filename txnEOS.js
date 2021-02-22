@@ -6,16 +6,7 @@ const { TextEncoder, TextDecoder } = require('util');
 var util = require('util');
 const { Op } = require('sequelize')
 const send = require('./models/send')
-/* onst config = {
-    chainId: "e70aaab8997e1dfce58fbfac80cbbb8fecec7b99cf982a9444273cbc64c41473",
-    keyProvider: ["5JSWgESQeCM3DiBrXDmEsvQw4V4GYZQJwyv92NpaKfjtKNHkq8x"],
-    httpEndpoint: 'https://jungle3.cryptolions.io:443',
-    // TODO: changeable https://api.eosnewyork.io https://nodes.get-scatter.com
-    expireInSeconds: 60,
-    broadcast: true,
-    verbose: false, // API activity
-    sign: true
-  }  */
+
 const defaultPrivateKey = process.env.PRIVATE_KEY_TEST_EOSIO; // bob
 const signatureProvider = new JsSignatureProvider([defaultPrivateKey]);
 const rpc = new JsonRpc('https://api.testnet.eos.io', { fetch });
