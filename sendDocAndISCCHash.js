@@ -32,13 +32,16 @@ const runscript = async() =>{
         }
     })
 
+    console.log("Length:",transactionsDocHash.length)
+    if(transactionsDocHash.length !==0){
+        await sendTransaction.sendDocHash(transactionsDocHash)
+    }
+
     if(transactionsDocAndISCCHash.length !== 0){
         await sendTransaction.sendDocAndISCCHash(transactionsDocAndISCCHash)
     }
 
-    if(transactionsDocHash.length !==0){
-        await sendTransaction.sendDocHash(transactionsDocHash)
-    }
+ 
 }
 
 runscript()

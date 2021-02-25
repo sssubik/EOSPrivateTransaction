@@ -30,7 +30,7 @@ sendDocAndISCCHash = async (transactions) => {
                     data: {
                         from: 'wemkmoegoqei',
                         hash: transaction.docHash,
-                        hash4d: transaction.docISCCHash
+                        security4dhash: transaction.docISCCHash
                     }
                 }]
             },
@@ -65,14 +65,14 @@ sendDocHash = async (transactions) => {
         try {
              result = await api.transact({
                 actions: [{
-                    account: 'proofofipbee',
+                    account: 'wemkmoegoqei',
                     name: 'timestamphash',
                     authorization: [{
-                        actor: 'proofofipbee',
+                        actor: 'wemkmoegoqei',
                         permission: 'active',
                     }],
                     data: {
-                        from: 'proofofipbee',
+                        from: 'wemkmoegoqei',
                         hash: transaction.docHash,
                     }
                 }]
@@ -98,12 +98,12 @@ sendDocHash = async (transactions) => {
     
 }
 module.exports = {
-    sendDocAndISCCHashTransaction = async (transactions) => {
+    sendDocAndISCCHashTransaction: async (transactions) => {
 
         let result = await sendDocAndISCCHash(transactions)
         
     },
-    sendDocHash = async (transactions) => {
+    sendDocHash: async (transactions) => {
 
         let result = await sendDocHash(transactions)
         
