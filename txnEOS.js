@@ -97,12 +97,12 @@ sendDocHash = async (transactions) => {
     
 }
 module.exports = {
-    sendDocAndISCCHashTransaction = async (transactions) => {
+    sendDocAndISCCHashTransaction: async (transactions) => {
 
         let result = await sendDocAndISCCHash(transactions)
         
     },
-    sendDocHash = async (transactions) => {
+    sendDocHash:  async (transactions) => {
 
         let result = await sendDocHash(transactions)
         
