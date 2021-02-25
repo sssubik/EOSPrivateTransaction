@@ -11,6 +11,12 @@ module.exports = {
         let results = await Transaction.sendDocAndISCCHashTransaction(transactions)
 
         //await saveTransaction(results)
+    },
+
+    sendDocHash: async(transactions) => {
+        let results = await Transaction.sendDocHash(transactions)
+
+        //await saveTransaction(results)
     }
     
 }

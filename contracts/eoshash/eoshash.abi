@@ -12,7 +12,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "hash4d",
+                    "name": "security4dhash",
                     "type": "string"
                 }
             ]

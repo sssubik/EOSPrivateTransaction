@@ -57,10 +57,55 @@ sendDocAndISCCHash = async (transactions) => {
 }
 
 
-module.exports = class TransactionUtils {
-    static sendDocAndISCCHashTransaction = async (transactions) => {
+
+sendDocHash = async (transactions) => {
+    let results = []
+    let result
+    for (transaction of transactions) {
+        try {
+             result = await api.transact({
+                actions: [{
+                    account: 'proofofipbee',
+                    name: 'timestamphash',
+                    authorization: [{
+                        actor: 'proofofipbee',
+                        permission: 'active',
+                    }],
+                    data: {
+                        from: 'proofofipbee',
+                        hash: transaction.docHash,
+                    }
+                }]
+            },
+                {
+                    blocksBehind: 3,
+                    expireSeconds: 30,
+                }
+            )
+        }
+        catch (error) {
+            console.log(error)
+            result = error
+        }
+        console.log(result)
+        await saveTransaction({
+            "result": result,
+            "primaryId": transaction.id,
+            "docISCCHash": transaction.docISCCHash,
+            "docHash": transaction.docHash
+        })
+    }
+    
+}
+module.exports = {
+    sendDocAndISCCHashTransaction = async (transactions) => {
 
         let result = await sendDocAndISCCHash(transactions)
+        
+    },
+    sendDocHash = async (transactions) => {
+
+        let result = await sendDocHash(transactions)
         
     }
 }
