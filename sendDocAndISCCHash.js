@@ -4,7 +4,8 @@ const send = require('./models/send')
 var sendTransaction = require('./app.js')
 
 const runscript = async() =>{
-    var transactions = []
+    var transactionsDocAndISCCHash = []
+    var transactionsDocHash = []
     let allTransactions = await send.findAll({
         where: {
             tr_id:{
@@ -14,7 +15,7 @@ const runscript = async() =>{
     }).then(async(txns) => {
         for(txn of txns){
             if(txn.st == null && txn.docISCCHash !== null && txn.docHash !== null){
-                transactions.push(
+                transactionsDocAndISCCHash.push(
                     {
                         'id': txn.id,
                         'docHash': txn.docHash,
@@ -22,11 +23,21 @@ const runscript = async() =>{
                     }
                 )
             }
+            else if(txn.st == null && txn.docISCCHash === null && txn.docHash !== null){
+                transactionsDocHash.push({
+                    'id': txn.id,
+                    'docHash': txn.docHash
+                })
+            }
         }
     })
 
-    if(transactions.length !== 0){
-        await sendTransaction.sendDocAndISCCHash(transactions)
+    if(transactionsDocAndISCCHash.length !== 0){
+        await sendTransaction.sendDocAndISCCHash(transactionsDocAndISCCHash)
+    }
+
+    if(transactionsDocHash.length !==0){
+        await sendTransaction.sendDocHash(transactionsDocHash)
     }
 }
 
