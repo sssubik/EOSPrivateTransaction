@@ -39,6 +39,12 @@ sendDocAndISCCHash = async (transactions) => {
                     expireSeconds: 30,
                 }
             )
+            await saveTransaction({
+                "result": result,
+                "primaryId": transaction.id,
+                "docISCCHash": transaction.docISCCHash,
+                "docHash": transaction.docHash
+            })
         }
         catch (error) {
             result = error
@@ -46,12 +52,7 @@ sendDocAndISCCHash = async (transactions) => {
             console.log(result)
         }
         console.log(result)
-        await saveTransaction({
-            "result": result,
-            "primaryId": transaction.id,
-            "docISCCHash": transaction.docISCCHash,
-            "docHash": transaction.docHash
-        })
+       
     }
     
 }
@@ -82,6 +83,11 @@ sendDocHash = async (transactions) => {
                     expireSeconds: 30,
                 }
             )
+            await saveTransaction({
+                "result": result,
+                "primaryId": transaction.id,
+                "docHash": transaction.docHash
+            })
         }
         catch (error) {
             result = error
@@ -89,11 +95,7 @@ sendDocHash = async (transactions) => {
             
         }
         console.log(result)
-        await saveTransaction({
-            "result": result,
-            "primaryId": transaction.id,
-            "docHash": transaction.docHash
-        })
+        
     }
     
 }
@@ -114,7 +116,6 @@ const saveTransaction = async(singleResult) =>{
     console.log('results in save transaction -->', singleResult)
     
     logger.info('Saved-----------'+singleResult)
-    logger.info()
         send.update({
             st:1,
             tr_id: singleResult.result.transaction_id
