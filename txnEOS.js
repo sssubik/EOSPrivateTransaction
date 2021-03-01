@@ -114,8 +114,6 @@ module.exports = {
 
 const saveTransaction = async(singleResult) =>{
     logger.info('results in save transaction -->', singleResult)
-    
-    logger.info('Saved-----------'+singleResult)
         send.update({
             st:1,
             tr_id: singleResult.result.transaction_id
