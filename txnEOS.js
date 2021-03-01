@@ -39,7 +39,7 @@ sendDocAndISCCHash = async (transactions) => {
                     expireSeconds: 30,
                 }
             )
-        console.log(result)
+        
         await saveTransaction({
             "result": result,
             "primaryId": transaction.id,
@@ -48,10 +48,11 @@ sendDocAndISCCHash = async (transactions) => {
         })
         }
         catch (error) {
-            console.log(error)
             result = error
+            logger.error(result)
+            console.log(result)
         }
-        
+        console.log(result)
     }
     
 }
@@ -74,6 +75,7 @@ sendDocHash = async (transactions) => {
                     data: {
                         from: 'wemkmoegoqei',
                         hash: transaction.docHash,
+                    
                     }
                 }]
             },
@@ -84,16 +86,18 @@ sendDocHash = async (transactions) => {
             )
         }
         catch (error) {
-            console.log(error)
             result = error
+            logger.error(result)
+            console.log(result)
         }
-        console.log(result)
+        
         await saveTransaction({
             "result": result,
             "primaryId": transaction.id,
             "docISCCHash": transaction.docISCCHash,
             "docHash": transaction.docHash
         })
+        console.log(result)
     }
     
 }
@@ -111,7 +115,7 @@ module.exports = {
 }
 
 const saveTransaction = async(singleResult) =>{
-    console.log('results in save transaction -->', singleResult)
+    logger.info('saving transaction ------------', singleResult)
 
         send.update({
             st:1,
