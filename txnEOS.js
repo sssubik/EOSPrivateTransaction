@@ -2,7 +2,7 @@ const { Api, JsonRpc, RpcError } = require('eosjs');
 const { JsSignatureProvider } = require('eosjs/dist/eosjs-jssig');      // development only
 const fetch = require('node-fetch');                                    // node only; not needed in browsers
 const { TextEncoder, TextDecoder } = require('util');
-
+const logger = require('./logs/winston')
 var util = require('util');
 const { Op } = require('sequelize')
 const send = require('./models/send')
