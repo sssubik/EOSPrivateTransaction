@@ -113,7 +113,7 @@ module.exports = {
 }
 
 const saveTransaction = async(singleResult) =>{
-    console.log('results in save transaction -->', singleResult)
+    logger.info('results in save transaction -->', singleResult)
     
     logger.info('Saved-----------'+singleResult)
         send.update({
@@ -124,7 +124,6 @@ const saveTransaction = async(singleResult) =>{
                 id: singleResult.primaryId
             }
         })
-        console.log('saving.......')
     
     
 }
