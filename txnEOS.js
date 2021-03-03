@@ -14,6 +14,11 @@ const signatureProvider = new JsSignatureProvider([defaultPrivateKey]);
 const rpc = new JsonRpc('https://eos.greymass.com:443', { fetch });
 const api = new Api({ rpc, signatureProvider, textDecoder: new TextDecoder(), textEncoder: new TextEncoder() });
 
+const pending = 0
+const started = 1
+const done = 2
+
+
 sendDocAndISCCHash = async (transactions) => {
     let results = []
     let result
@@ -115,7 +120,7 @@ module.exports = {
 const saveTransaction = async(singleResult) =>{
     logger.info('results in save transaction -->', singleResult)
         send.update({
-            st:1,
+            st:done,
             tr_id: singleResult.result.transaction_id
         },{
             where: {
