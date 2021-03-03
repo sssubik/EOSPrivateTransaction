@@ -14,6 +14,11 @@ const rpc = new JsonRpc('https://api.testnet.eos.io', { fetch });
 //const rpc = new JsonRpc('http://jungle3.cryptolions.io:80', { fetch });
 const api = new Api({ rpc, signatureProvider, textDecoder: new TextDecoder(), textEncoder: new TextEncoder() });
 
+
+const pending = 0
+const started = 1
+const done = 2
+
 sendDocAndISCCHash = async (transactions) => {
     let results = []
     let result
@@ -84,6 +89,12 @@ sendDocHash = async (transactions) => {
                     expireSeconds: 30,
                 }
             )
+            await saveTransaction({
+                "result": result,
+                "primaryId": transaction.id,
+                "docISCCHash": transaction.docISCCHash,
+                "docHash": transaction.docHash
+            })
         }
         catch (error) {
             result = error
@@ -91,12 +102,7 @@ sendDocHash = async (transactions) => {
             console.log(result)
         }
         
-        await saveTransaction({
-            "result": result,
-            "primaryId": transaction.id,
-            "docISCCHash": transaction.docISCCHash,
-            "docHash": transaction.docHash
-        })
+        
         console.log(result)
     }
     
@@ -118,7 +124,7 @@ const saveTransaction = async(singleResult) =>{
     logger.info('saving transaction ------------', singleResult)
 
         send.update({
-            st:1,
+            st:done,
             tr_id: singleResult.result.transaction_id
         },{
             where: {

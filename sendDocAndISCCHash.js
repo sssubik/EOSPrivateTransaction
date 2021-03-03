@@ -3,6 +3,10 @@ const {Op} = require('sequelize')
 const send = require('./models/send')
 var sendTransaction = require('./app.js')
 
+const pending = 0
+const started = 1
+const done = 2
+
 const runscript = async() =>{
     var transactionsDocAndISCCHash = []
     var transactionsDocHash = []
@@ -10,11 +14,18 @@ const runscript = async() =>{
         where: {
             tr_id:{
                 [Op.eq]: null
-            }
+            },
+            [Op.and]:[
+               {
+                   st: {[Op.ne]:started}
+                },
+               {
+                   st: {[Op.ne]:done}}
+            ]
         }
     }).then(async(txns) => {
         for(txn of txns){
-            if(txn.st == null && txn.docISCCHash !== null && txn.docHash !== null){
+            if(txn.st == 0 && txn.docISCCHash !== null && txn.docHash !== null){
                 transactionsDocAndISCCHash.push(
                     {
                         'id': txn.id,
@@ -22,17 +33,18 @@ const runscript = async() =>{
                         'docISCCHash':txn.docISCCHash
                     }
                 )
+                
             }
-            else if(txn.st == null && txn.docISCCHash === null && txn.docHash !== null){
+            else if(txn.st == 0 && txn.docISCCHash === null && txn.docHash !== null){
                 transactionsDocHash.push({
                     'id': txn.id,
                     'docHash': txn.docHash
                 })
             }
+            await updateStatus(txn.id)
         }
     })
-
-    console.log("Length:",transactionsDocHash.length)
+    console.log(transactionsDocAndISCCHash.length)
     if(transactionsDocHash.length !==0){
         await sendTransaction.sendDocHash(transactionsDocHash)
     }
@@ -42,6 +54,19 @@ const runscript = async() =>{
     }
 
  
+}
+
+const updateStatus = async primaryId=>{
+    send.update({
+        st: started
+    },{
+        where:{
+            id:primaryId
+        }
+    }
+    
+    )
+    return 
 }
 
 runscript()
