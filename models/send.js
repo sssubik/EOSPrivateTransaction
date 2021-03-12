@@ -27,6 +27,12 @@ const Send = sequelize.define('sendEOS',{
     },
     st:{
         type: Sequelize.INTEGER
+    },
+    errorStatus:{
+        type: Sequelize.INTEGER
+    },
+    tr_ts:{
+        type: Sequelize.DATE
     }
 },{   
     timestamps: false,

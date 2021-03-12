@@ -14,6 +14,8 @@ const rpc = new JsonRpc('https://api.testnet.eos.io', { fetch });
 //const rpc = new JsonRpc('http://jungle3.cryptolions.io:80', { fetch });
 const api = new Api({ rpc, signatureProvider, textDecoder: new TextDecoder(), textEncoder: new TextEncoder() });
 
+const success = 0
+const unsuccessful = 1
 
 const pending = 0
 const started = 1
@@ -47,6 +49,7 @@ sendDocAndISCCHash = async (transactions) => {
         
         await saveTransaction({
             "result": result,
+            "timestamp": Date.parse(result.processed.block_time + "Z"),
             "primaryId": transaction.id,
             "docISCCHash": transaction.docISCCHash,
             "docHash": transaction.docHash
@@ -56,6 +59,9 @@ sendDocAndISCCHash = async (transactions) => {
             result = error
             logger.error(result)
             console.log(result)
+            await saveErrorStatus({
+                "primaryId": transaction.id
+            })
         }
         console.log(result)
     }
@@ -91,6 +97,7 @@ sendDocHash = async (transactions) => {
             )
             await saveTransaction({
                 "result": result,
+                "timestamp": Date.parse(result.processed.block_time + "Z"),
                 "primaryId": transaction.id,
                 "docISCCHash": transaction.docISCCHash,
                 "docHash": transaction.docHash
@@ -100,6 +107,9 @@ sendDocHash = async (transactions) => {
             result = error
             logger.error(result)
             console.log(result)
+            await saveErrorStatus({
+                "primaryId": transaction.id
+            })
         }
         
         
@@ -123,9 +133,14 @@ module.exports = {
 const saveTransaction = async(singleResult) =>{
     logger.info('saving transaction ------------', singleResult)
 
+    console.log(singleResult)
+
+    console.log(singleResult.timestamp)
         send.update({
             st:done,
-            tr_id: singleResult.result.transaction_id
+            tr_id: singleResult.result.transaction_id,
+            tr_ts:singleResult.timestamp,
+            errorStatus: success
         },{
             where: {
                 id: singleResult.primaryId
@@ -133,5 +148,16 @@ const saveTransaction = async(singleResult) =>{
         })
         console.log('saving.......')
     
-    
+        return
+}
+
+const saveErrorStatus = async(errorResult) => {
+    send.update({
+
+        errorStatus: unsuccessful
+    },{
+        where: {
+            id: errorResult.primaryId
+        }
+    })
 }

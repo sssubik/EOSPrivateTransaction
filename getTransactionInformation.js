@@ -26,8 +26,10 @@ offset = 5
 async function getAPI(){
 (async () => {
 
-    result = await rpc.history_get_transaction("4dffcb867f01f3c805a2b32b24735db89ac40a350b7831404016b325f1bc153c")
+    result = await rpc.history_get_transaction("f0460b43f7b7708d21a3b9e201db20a6e7d390c4cdf67557f66d954a43b19708")
     console.log(result)
+    //console.log(result.traces[0].receipt)
+    console.log(result.trx.trx.actions)
   })();
 }
 
