@@ -46,6 +46,7 @@ sendDocAndISCCHash = async (transactions) => {
             )
             await saveTransaction({
                 "result": result,
+                "timestamp": Date.parse(result.processed.block_time + "Z"),
                 "primaryId": transaction.id,
                 "docISCCHash": transaction.docISCCHash,
                 "docHash": transaction.docHash
@@ -90,6 +91,7 @@ sendDocHash = async (transactions) => {
             )
             await saveTransaction({
                 "result": result,
+                "timestamp": Date.parse(result.processed.block_time + "Z"),
                 "primaryId": transaction.id,
                 "docHash": transaction.docHash
             })
@@ -121,7 +123,8 @@ const saveTransaction = async(singleResult) =>{
     logger.info('results in save transaction -->', singleResult)
         send.update({
             st:done,
-            tr_id: singleResult.result.transaction_id
+            tr_id: singleResult.result.transaction_id,
+            tr_ts:singleResult.timestamp
         },{
             where: {
                 id: singleResult.primaryId
