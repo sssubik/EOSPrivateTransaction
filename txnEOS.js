@@ -46,7 +46,7 @@ sendDocAndISCCHash = async (transactions) => {
             )
             await saveTransaction({
                 "result": result,
-                "timestamp": Date.parse(result.processed.block_time + "Z"),
+                "timestamp": Date.parse(result.processed.block_time),
                 "primaryId": transaction.id,
                 "docISCCHash": transaction.docISCCHash,
                 "docHash": transaction.docHash
@@ -91,7 +91,7 @@ sendDocHash = async (transactions) => {
             )
             await saveTransaction({
                 "result": result,
-                "timestamp": Date.parse(result.processed.block_time + "Z"),
+                "timestamp": Date.parse(result.processed.block_time),
                 "primaryId": transaction.id,
                 "docHash": transaction.docHash
             })
