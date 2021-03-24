@@ -44,11 +44,12 @@ const runscript = async() =>{
             await updateStatus(txn.id)
         }
     })
-    console.log(transactionsDocAndISCCHash.length)
+    console.log('No. Of doc hashes',transactionsDocHash.length)
+    
     if(transactionsDocHash.length !==0){
         await sendTransaction.sendDocHash(transactionsDocHash)
     }
-
+    console.log('No. Of doc and iscc hashes',transactionsDocAndISCCHash.length)
     if(transactionsDocAndISCCHash.length !== 0){
         await sendTransaction.sendDocAndISCCHash(transactionsDocAndISCCHash)
     }
